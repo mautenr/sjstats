@@ -101,7 +101,7 @@ aov_stat_summary <- function(model) {
   # check that model inherits from correct class
   # else, try to coerce to anova table
   if (!inherits(model, c("Gam", "aov", "anova", "anova.rms", "aovlist")))
-    model <- stats::anova(model)
+    model <- stats::anova(model, type = "I") # changed type from type III (default) to type I
 
   # get summary table
   aov.sum <- as.data.frame(broom::tidy(model))
